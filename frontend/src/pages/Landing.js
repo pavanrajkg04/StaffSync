@@ -15,8 +15,7 @@ export default function Landing() {
           </div>
           <nav style={styles.navLinks}>
             <a href="#features" style={styles.navLink}>Features</a>
-            <a href="#pricing" style={styles.navLink}>Pricing</a>
-            <a href="https://github.com/yourusername/staffsync" style={styles.navLink}>GitHub</a>
+            <a href="https://github.com/pavanrajkg04/staffsync" style={styles.navLink}>GitHub</a>
             <Link to="/login" style={styles.loginBtn}>Login</Link>
             <Link to="/register" style={styles.ctaBtn}>Start Free</Link>
           </nav>
@@ -143,7 +142,6 @@ export default function Landing() {
             <div style={styles.linkGroup}>
               <h4>Product</h4>
               <a href="#features">Features</a>
-              <a href="#pricing">Pricing</a>
               <a href="#demo">Demo</a>
             </div>
             <div style={styles.linkGroup}>
