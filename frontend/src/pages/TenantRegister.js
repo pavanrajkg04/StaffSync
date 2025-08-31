@@ -116,27 +116,60 @@ export default function TenantRegister() {
     setErrors({});
   };
 
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const newErrors = validateStep(3);
-    
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-    
-    setIsLoading(true);
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      alert(`Registration successful for: ${formData.companyName}`);
-      // TODO: Connect to backend API and redirect to dashboard
-    } catch (error) {
-      setErrors({ general: 'Registration failed. Please try again.' });
-    } finally {
-      setIsLoading(false);
-    }
+  e.preventDefault();
+  const newErrors = validateStep(3);
+
+  if (Object.keys(newErrors).length > 0) {
+    setErrors(newErrors);
+    return;
+  }
+
+  setIsLoading(true);
+
+  const payload = {
+    company_name: formData.companyName,
+    admin_first_name: formData.firstName,
+    admin_last_name: formData.lastName,
+    admin_email: formData.email,
+    admin_phone: formData.phone,
+    admin_password: formData.password,
   };
+
+  try {
+    const response = await fetch(
+      "https://cautious-palm-tree-7x666j9v66vhx9gx-8000.app.github.dev/api/tenant/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    const data = await response.json();
+    console.log("API response:", data);
+
+    if (response.ok) {
+      alert(`✅ ${data.message || "Registration successful!"}`);
+      // Optionally reset form and navigate to login/dashboard here
+    } else {
+      setErrors({
+        general: data.detail || data.message || "Registration failed. Please try again.",
+      });
+    }
+  } catch (error) {
+    setErrors({
+      general: error.message || "Network error. Please try again.",
+    });
+  } finally {
+    setIsLoading(false);
+  }
+};
+
+
 
   const renderStepContent = () => {
     switch (currentStep) {
