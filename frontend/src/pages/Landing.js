@@ -131,6 +131,46 @@ export default function Landing() {
         </div>
       </section>
 
+<div style={aboutMeStyles.container}>
+  <div style={aboutMeStyles.imagePlaceholder}>
+  <img 
+    src="https://media.licdn.com/dms/image/v2/D5603AQE6_J6_o8bhFA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1730974486743?e=1759363200&v=beta&t=gVfO76F6yrBJfIOfz3Me2zT2pOHHwsEMTfA81r_34n0" 
+    alt="Profile"
+    style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }}
+  />
+      </div>
+
+        <div style={aboutMeStyles.content}>
+          <h3 style={aboutMeStyles.name}>Pavan Raj G</h3>
+          <p>
+        <strong>Data Scientist-II @ Kine.AI | AI/ML Engineer | Cloud & DevOps Explorer</strong>
+      </p>
+
+      <p>
+        I build AI/ML solutions, cloud-native pipelines, and scalable ML infrastructure. 
+        Skilled in Python, PyTorch, MLOps, and cloud technologies.
+      </p>
+
+      <p>
+        <strong>Upcoming Projects:</strong><br/>
+        • <em>Billinator</em>  Open-source billing & management (EntMS).<br/>
+        • <em>Travestlytics</em> AI-driven trade & portfolio analytics.
+      </p>
+
+      <p>
+        Building Gen-AI Applications, agent-based systems & open-source innovations.
+      </p>
+
+      <p>
+        <a href="mailto:pavanrajkg92@gmail.com" style={aboutMeStyles.link}>pavanrajkg92@gmail.com</a>
+      </p>
+      <a href="https://github.com/pavanrajkg04" target="_blank" rel="noreferrer" style={aboutMeStyles.link}>GitHub</a> •
+      <a href="https://linkedin.com/in/pavanrajkg" target="_blank" rel="noreferrer" style={aboutMeStyles.link}> LinkedIn</a> •
+      <a href="https://www.youtube.com/@DataChroniclesbyPavan" target="_blank" rel="noreferrer" style={aboutMeStyles.link}> YouTube</a>
+  </div>
+</div>
+
+
       {/* Footer */}
       <footer style={styles.footer}>
         <div style={styles.footerContent}>
@@ -193,6 +233,46 @@ const featuresData = [
     description: 'GDPR compliant, audit logs, and enterprise-grade security features'
   }
 ];
+
+
+const aboutMeStyles = {
+  container: {
+    display: 'flex',
+    gap: 24,
+    alignItems: 'center',
+    padding: '2rem',
+    backgroundColor: '#f7fafc',
+    borderRadius: 12,
+    maxWidth: 800,
+    margin: '3rem auto',
+  },
+  imagePlaceholder: {
+    width: 120,
+    height: 120,
+    borderRadius: '50%',
+    backgroundColor: '#cbd5e0',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 48,
+    color: '#718096',
+  },
+  content: {
+    flex: 1,
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+    color: '#2d3748',
+  },
+  name: {
+    fontSize: 24,
+    fontWeight: '700',
+    marginBottom: 8,
+  },
+  link: {
+    color: '#4c51bf',
+    textDecoration: 'none',
+    marginRight: 12,
+  },
+};
 
 // Styles object
 const styles = {
