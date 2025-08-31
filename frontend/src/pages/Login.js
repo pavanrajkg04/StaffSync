@@ -53,7 +53,7 @@ export default function Login() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        "https://cautious-palm-tree-7x666j9v66vhx9gx-8000.app.github.dev/api/login",
+        process.env.NEXT_PUBLIC_API_URL + "/api/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
