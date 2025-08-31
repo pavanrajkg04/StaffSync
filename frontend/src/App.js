@@ -3,10 +3,17 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import TenantRegister from './pages/TenantRegister';
+import Dashboard from './pages/dashboard';
+import Employees from './pages/employees';
+import Payroll from './pages/payroll';
+import Reports from './pages/reports';
+import Attendance from './pages/attendance';
 
 // Import additional pages as you create them
 // import Dashboard from './pages/Dashboard';
 // import NotFound from './pages/NotFound';
+
+
 
 function App() {
   return (
@@ -20,7 +27,11 @@ function App() {
         {/* Redirect old paths for better UX */}
         <Route path="/signup" element={<Navigate to="/register" replace />} />
         <Route path="/signin" element={<Navigate to="/login" replace />} />
-        
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/employees" element={<Employees />} />
+        <Route path="/payroll" element={<Payroll />} />
+        <Route path="/reports" element={<Reports />} />
+        <Route path="/attendance" element={<Attendance />} />
         {/* Future Routes - Uncomment as you build these pages */}
         {/* 
         <Route path="/dashboard" element={<Dashboard />} />

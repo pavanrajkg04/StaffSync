@@ -7,6 +7,7 @@ from fastapi.exceptions import RequestValidationError
 
 from Database_operations.init_db import init_db
 from backend_services.tenant_registration import router as tenant_router
+from backend_services.login_to_account import router as login_router
 
 app = FastAPI()
 
@@ -60,3 +61,4 @@ def startup_event():
 
 # Include tenant registration routes
 app.include_router(tenant_router)
+app.include_router(login_router)
