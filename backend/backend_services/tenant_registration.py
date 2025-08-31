@@ -41,3 +41,4 @@ def register_tenant(data: TenantRegistration, db=Depends(get_db)):
     # ❌ remove db.commit()  (not needed for DuckDB)
 
     return {"success": True, "message": "Tenant registered successfully", "tenant_id": tenant_id}
+

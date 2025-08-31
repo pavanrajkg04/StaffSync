@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 class TenantRegistration(BaseModel):
     company_name: str
@@ -13,3 +13,8 @@ class TenantRegistration(BaseModel):
     website: str | None = None
     job_title: str | None = None
     subscribe_newsletter: bool = False
+
+
+class LoginRequest(BaseModel):
+    email: EmailStr
+    password: str
