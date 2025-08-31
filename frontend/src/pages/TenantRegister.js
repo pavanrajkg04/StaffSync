@@ -153,7 +153,10 @@ export default function TenantRegister() {
           body: JSON.stringify(payload),
         }
       );
-
+      console.log("status", response.status);
+      const text = await response.text();
+      console.log("raw response", text);
+      
       const data = await response.json();
       console.log("API response:", data);
 
