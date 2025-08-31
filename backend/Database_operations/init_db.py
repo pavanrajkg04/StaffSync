@@ -1,33 +1,42 @@
-import duckdb
-
-DB_PATH = "staffsync_db.duckdb"
+import duckdb  # Assuming you're using duckdb.connect; import as needed
 
 def init_db():
-    conn = duckdb.connect(DB_PATH)
+    conn = duckdb.connect('staffsync_db.db')  # Replace with your database path if different
+
     conn.execute("""
     CREATE TABLE IF NOT EXISTS tenants (
-        tenant_id UUID PRIMARY KEY,
+        tenant_id VARCHAR PRIMARY KEY,
         company_name VARCHAR NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    );
-
-    CREATE TABLE IF NOT EXISTS users (
-        user_id UUID PRIMARY KEY,
-        tenant_id UUID REFERENCES tenants(tenant_id),
-        first_name VARCHAR NOT NULL,
-        last_name VARCHAR NOT NULL,
-        email VARCHAR NOT NULL UNIQUE,
-        phone VARCHAR,
-        password_hash VARCHAR NOT NULL,
-        role VARCHAR NOT NULL DEFAULT 'admin',
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        company_size VARCHAR,
+        industry VARCHAR,
+        website VARCHAR,
+        subscribe_newsletter BOOLEAN DEFAULT FALSE,
+        created_at TIMESTAMP
     );
     """)
-    conn.close()
+
+    conn.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+        user_id VARCHAR PRIMARY KEY,
+        tenant_id VARCHAR NOT NULL,
+        first_name VARCHAR NOT NULL,
+        last_name VARCHAR NOT NULL,
+        email VARCHAR UNIQUE NOT NULL,
+        phone VARCHAR,
+        role VARCHAR NOT NULL,
+        job_title VARCHAR,
+        password_hash VARCHAR NOT NULL,
+        created_at TIMESTAMP,
+        FOREIGN KEY (tenant_id) REFERENCES tenants (tenant_id)
+    );
+    """)
+
+    conn.close()  # Or commit if needed, but DuckDB auto-commits by default
 
 def get_db():
-    conn = duckdb.connect(DB_PATH)
+    conn = duckdb.connect('staffsync_db.db')
     try:
         yield conn
     finally:
         conn.close()
+
