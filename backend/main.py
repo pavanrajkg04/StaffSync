@@ -16,7 +16,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://cautious-palm-tree-7x666j9v66vhx9gx-3000.app.github.dev",
-          "https://ostaffsync.vercel.app/",
+          "https://ostaffsync.vercel.app",
             "http://localhost:3000",  # frontend
     ],  # Or specify your frontend URL, e.g., ["http://localhost:3000"]
     allow_credentials=True,
