@@ -142,7 +142,9 @@ export default function TenantRegister() {
     };
 
     try {
+      console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
       const response = await fetch(
+       
         // Recommended: Use environment variable for API URL, e.g., process.env.REACT_APP_API_URL + '/api/tenant/register'
         process.env.NEXT_PUBLIC_API_URL + "/api/tenant/register",
         {
