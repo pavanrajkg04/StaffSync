@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Login() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -43,20 +44,41 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validateForm();
-    
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-    
+
     setIsLoading(true);
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      alert(`Login successful for: ${formData.email}`);
-      // TODO: Connect to backend API and redirect to dashboard
+      const response = await fetch(
+        "https://cautious-palm-tree-7x666j9v66vhx9gx-8000.app.github.dev/api/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+          }),
+        }
+      );
+
+      const data = await response.json();
+      
+      if (response.ok && data.success) {
+        // Store user data for dashboard
+        localStorage.setItem('user', JSON.stringify(data.user));
+        
+        // Redirect to dashboard
+        navigate('/dashboard');
+      } else {
+        setErrors({
+          general: data.message || "Incorrect email or password.",
+        });
+      }
     } catch (error) {
-      setErrors({ general: 'Login failed. Please try again.' });
+      setErrors({ general: error.message || "Network error. Please try again." });
     } finally {
       setIsLoading(false);
     }

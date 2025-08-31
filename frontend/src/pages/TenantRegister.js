@@ -144,7 +144,7 @@ export default function TenantRegister() {
     try {
       const response = await fetch(
         // Recommended: Use environment variable for API URL, e.g., process.env.REACT_APP_API_URL + '/api/tenant/register'
-        "https://cautious-palm-tree-7x666j9v66vhx9gx-8000.app.github.dev/api/tenant/register",
+        process.env.NEXT_PUBLIC_API_URL + "/api/tenant/register",
         {
           method: "POST",
           headers: {
@@ -153,7 +153,10 @@ export default function TenantRegister() {
           body: JSON.stringify(payload),
         }
       );
-
+      console.log("status", response.status);
+      const text = await response.text();
+      console.log("raw response", text);
+      
       const data = await response.json();
       console.log("API response:", data);
 

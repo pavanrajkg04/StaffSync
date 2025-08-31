@@ -16,7 +16,7 @@ else:
 
 # Check if users table exists
 if "users" in [t[0] for t in conn.execute("SHOW TABLES").fetchall()]:
-    rows1 = conn.execute("SELECT * FROM users").df()
+    rows1 = conn.execute("SELECT email FROM users").df()
     print("\nUsers:\n", rows1.head())
 else:
     print("\nNo users table found.")
