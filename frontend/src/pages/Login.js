@@ -52,6 +52,7 @@ export default function Login() {
 
     setIsLoading(true);
     try {
+      console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
       const response = await fetch(
         process.env.NEXT_PUBLIC_API_URL + "/api/login",
         {
