@@ -13,7 +13,11 @@ app = FastAPI()
 # CORS middleware config (keep as-is, or make origins more specific for production)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=['*'],  # For dev; change to ["https://cautious-palm-tree-7x666j9v66vhx9gx-3000.app.github.dev"] in prod
+    allow_origins=[
+        "https://cautious-palm-tree-7x666j9v66vhx9gx-3000.app.github.dev",
+          "https://ostaffsync.vercel.app/",
+            "http://localhost:3000",  # frontend
+    ],  # Or specify your frontend URL, e.g., ["http://localhost:3000"]
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
