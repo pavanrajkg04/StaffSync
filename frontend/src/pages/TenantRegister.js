@@ -140,7 +140,7 @@ export default function TenantRegister() {
       subscribe_newsletter: formData.subscribeNewsletter,
       admin_password: formData.password,
     };
-
+ 
     try {
       console.log("API URL:", process.env.REACT_APP_API_URL);
       const response = await fetch(
